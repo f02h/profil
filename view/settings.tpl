@@ -33,12 +33,27 @@
         </div>
         <div style="height:56px"></div>
         <form action="/settings" method="get" style="max-width: 500px;margin: auto;background: white;padding: 10px;font-size: 50px;">
-            <label for="dolzinaRoke">Dolzina</label><br>
-            <input type="text" value="{{dolzinaRoke}}" id="dolzinaRoke" name="dolzinaRoke"/>
+
+            <label for="pozicija">Pozicija</label><br>
+            <input type="text" value="{{curpozicija}}" id="pozicija" name="pozicija"/>
             <br>
-            <label for="debelinaZage">Debelina zage</label><br>
-            <input type="text" value="{{debelinaZage}}" id="debelinaZage" name="debelinaZage"/>
-            <br><br>
+
+            <label for="hod">Hod</label><br>
+            <input type="text" value="{{curhod}}" id="hod" name="hod"/>
+            <br>
+
+            <label for="povratek">Povratek</label><br>
+            <input type="text" value="{{curpovratek}}" id="povratek" name="povratek"/>
+            <br>
+
+            <label for="povrtavanje">Povrtavanje</label><br>
+            <input type="text" value="{{curpovrtavanje}}" id="povrtavanje" name="povrtavanje"/>
+            <br>
+
+            <label for="povratekPovrtavanje">Povratek povrtavanje</label><br>
+            <input type="text" value="{{curpovratekPovrtavanje}}" id="povratekPovrtavanje" name="povratekPovrtavanje"/>
+            <br>
+
             <input class="btn btn-success" style="font-size: 50px;width:550px" type="submit" name="save" value="Shrani">
         </form>
     </body>

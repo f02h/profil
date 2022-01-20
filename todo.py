@@ -223,26 +223,41 @@ def todo_list():
 def todo_list():
 
     if request.GET.save:
-        dolzinaRoke = request.GET.dolzinaRoke.strip()
-        debelinaZage = request.GET.debelinaZage.strip()
+        pozicija = request.GET.pozicija.strip()
+        hod = request.GET.hod.strip()
+        povratek = request.GET.povratek.strip()
+        povrtavanje = request.GET.povrtavanje.strip()
+        povratekPovrtavanje = request.GET.povratekPovrtavanje.strip()
 
         conn = sqlite3.connect('/home/pi/profil/todo.db')
         c = conn.cursor()
-        c.execute("UPDATE vars SET value = ? WHERE name LIKE 'dolzinaRoke'", (dolzinaRoke,))
-        c.execute("UPDATE vars SET value = ? WHERE name LIKE 'debelinaZage'", (debelinaZage,))
+        c.execute("UPDATE vars SET value = ? WHERE name LIKE 'pozicija'", (pozicija,))
+        c.execute("UPDATE vars SET value = ? WHERE name LIKE 'hod'", (hod,))
+        c.execute("UPDATE vars SET value = ? WHERE name LIKE 'povratek'", (povratek,))
+        c.execute("UPDATE vars SET value = ? WHERE name LIKE 'povrtavanje'", (povrtavanje,))
+        c.execute("UPDATE vars SET value = ? WHERE name LIKE 'povratekPovrtavanje'", (povratekPovrtavanje,))
         conn.commit()
 
         redirect('/settings')
     else:
         conn = sqlite3.connect('/home/pi/profil/todo.db')
         c = conn.cursor()
-        c.execute("SELECT value FROM vars WHERE name LIKE 'dolzinaRoke'")
-        curdolzinaRoke = c.fetchone()[0]
+        c.execute("SELECT value FROM vars WHERE name LIKE 'pozicija'")
+        curpozicija = c.fetchone()[0]
 
-        c.execute("SELECT value FROM vars WHERE name LIKE 'debelinaZage'")
-        curdebelinaZage = c.fetchone()[0]
+        c.execute("SELECT value FROM vars WHERE name LIKE 'hod'")
+        curhod = c.fetchone()[0]
 
-        return template('settings', debelinaZage=float(curdebelinaZage), dolzinaRoke=float(curdolzinaRoke))
+        c.execute("SELECT value FROM vars WHERE name LIKE 'povratek'")
+        curpovratek = c.fetchone()[0]
+
+        c.execute("SELECT value FROM vars WHERE name LIKE 'povrtavanje'")
+        curpovrtavanje = c.fetchone()[0]
+
+        c.execute("SELECT value FROM vars WHERE name LIKE 'povratekPovrtavanje'")
+        curpovratekPovrtavanje = c.fetchone()[0]
+
+        return template('settings', pozicija=float(curpozicija), hod=float(curhod), povratek=float(curpovratek), povrtavanje=float(curpovrtavanje), povratekPovrtavanje=float(curpovratekPovrtavanje))
 
 @route('/new', method='GET')
 def new_item():
