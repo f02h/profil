@@ -234,7 +234,7 @@ def todo_list():
             "action": "home",
         }
 
-        usb.write(b"'"+json.dumps(data).encode()+"'")
+        usb.write(json.dumps(data).encode())
 
     output = template('make_table_vrtalka', rows=dict, projectStats=projectStats)
     return output
