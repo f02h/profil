@@ -255,9 +255,9 @@ def todo_list():
         curpovrtavanje = c.fetchone()[0]
 
         c.execute("SELECT value FROM vars WHERE name LIKE 'povratekPovrtavanje'")
-        curpovratekPovrtavanje = c.fetchone()[0]
+        curpovratekpovrtavanje = c.fetchone()[0]
 
-        return template('settings', pozicija=float(curpozicija), hod=float(curhod), povratek=float(curpovratek), povrtavanje=float(curpovrtavanje), povratekPovrtavanje=float(curpovratekPovrtavanje))
+        return template('settings', pozicija=float(curpozicija), hod=float(curhod), povratek=float(curpovratek), povrtavanje=float(curpovrtavanje), povratekPovrtavanje=float(curpovratekpovrtavanje))
 
 @route('/new', method='GET')
 def new_item():
