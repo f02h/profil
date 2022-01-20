@@ -247,6 +247,7 @@ def todo_list():
         }
 
         usb.write(json.dumps(data).encode())
+        return redirect(request.path)
     elif request.GET.home:
 
         data = {
