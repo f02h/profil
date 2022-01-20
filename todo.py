@@ -5,11 +5,15 @@ import csv
 import re
 import bottle
 from collections import defaultdict
+import serial
+import json
 
 # only needed when you run Bottle on mod_wsgi
 from bottle import default_app
 #TEMPLATE_PATH.insert(0, './profil/view')
 bottle.TEMPLATE_PATH.insert(0, '/home/pi/profil/view')
+
+USB_PORT = "/dev/ttyACM0"
 
 dirname = os.path.dirname(sys.argv[0])
 
@@ -169,6 +173,7 @@ def todo_list():
 
 @route('/vrtalka')
 def todo_list():
+    usb = serial.Serial(USB_PORT, 9600, timeout=2)
     conn = sqlite3.connect('/home/pi/profil/todo.db')
     c = conn.cursor()
 
@@ -196,9 +201,40 @@ def todo_list():
 
     c.close()
 
-    #if request.GET.drill:
+    if request.GET.drill:
 
-    #if request.GET.home:
+        c.execute("SELECT value FROM vars WHERE name LIKE 'pozicija'")
+        curpozicija = c.fetchone()[0]
+
+        c.execute("SELECT value FROM vars WHERE name LIKE 'hod'")
+        curhod = c.fetchone()[0]
+
+        c.execute("SELECT value FROM vars WHERE name LIKE 'povratek'")
+        curpovratek = c.fetchone()[0]
+
+        c.execute("SELECT value FROM vars WHERE name LIKE 'povrtavanje'")
+        curpovrtavanje = c.fetchone()[0]
+
+        c.execute("SELECT value FROM vars WHERE name LIKE 'povratekpovrtavanje'")
+        curpovratekpovrtavanje = c.fetchone()[0]
+
+        data = {
+            "action": "drill",
+            "pozicija": curpozicija,
+            "hod": curhod,
+            "povratek": curpovratek,
+            "povrtavanje": curpovrtavanje,
+            "povratekpovrtavanje": curpovratekpovrtavanje
+        }
+
+        usb.write(b"'"+json.dumps(data)+"'")
+    elif request.GET.home:
+
+        data = {
+            "action": "home",
+        }
+
+        usb.write(b"'"+json.dumps(data)+"'")
 
     output = template('make_table_vrtalka', rows=dict, projectStats=projectStats)
     return output
