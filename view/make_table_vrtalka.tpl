@@ -29,13 +29,10 @@
     </head>
     <body>
         <div style="position: fixed;top: 0;width: 100%;padding-bottom: 10px;">
-            <div style="width:33%;display:inline-block;">
-                <a href="/zaga" class="btn btn-primary" style="display:flex;margin:auto;padding: 9px;font-size: 24px;">Žaga</a>
-            </div>
-            <div style="width:33%;display:inline-block;">
+            <div style="width:50%;display:inline-block;">
                 <a href="/vrtalka" class="btn" style="display:flex;margin:auto;padding: 9px;font-size: 24px;background-color:white;">Vrtalka</a>
             </div>
-            <div style="width:33%;display:inline-block;">
+            <div style="width:50%;display:inline-block;">
                 <a href="/settings" class="btn btn-warning" style="display:flex;margin:auto;padding: 9px;font-size: 24px;">Nastavitve</a>
             </div>
         </div>
