@@ -219,13 +219,15 @@ def todo_list():
         c.execute("SELECT value FROM vars WHERE name LIKE 'povratekpovrtavanje'")
         curpovratekpovrtavanje = c.fetchone()[0]
 
+        ## pozicijaLNull
+        ## pozicijaDNull
         ## pozicijaL
         ## pozicijaD
         ## orodjeL
         ## orodjeD
         ## hodL
         ## počasnejePredKoncemHodaL
-        ## hitrostPredKoncemHodaD
+        ## hitrostPredKoncemHodaL
         ## hodD
         ## počasnejePredKoncemHodaD
         ## hitrostPredKoncemHodaD
@@ -253,13 +255,28 @@ def todo_list():
 
         usb.write(json.dumps(data).encode())
 
+        return redirect(request.path)
+
     elif request.GET.zaga:
+
+        ## hodL
+        ## počasnejePredKoncemHoda
+        ## hitrostPredKoncemHoda
 
         data = {
             "action": "cut",
         }
 
         usb.write(json.dumps(data).encode())
+
+    elif request.GET.pomik:
+
+        data = {
+            "action": "move",
+        }
+
+        usb.write(json.dumps(data).encode())
+
 
     c.close()
     output = template('make_table_vrtalka', rows=dict, projectStats=projectStats)
