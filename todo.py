@@ -14,6 +14,7 @@ from bottle import default_app
 bottle.TEMPLATE_PATH.insert(0, '/home/pi/profil/view')
 
 USB_PORT = "/dev/ttyACM0"
+usb = serial.Serial(USB_PORT, 9600, timeout=2)
 
 dirname = os.path.dirname(sys.argv[0])
 
@@ -173,7 +174,7 @@ def todo_list():
 
 @route('/vrtalka')
 def todo_list():
-    usb = serial.Serial(USB_PORT, 9600, timeout=2)
+
     conn = sqlite3.connect('/home/pi/profil/todo.db')
     c = conn.cursor()
 
