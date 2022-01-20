@@ -227,7 +227,7 @@ def todo_list():
             "povratekpovrtavanje": curpovratekpovrtavanje
         }
 
-        usb.write(b"'"+json.dumps(data).encode()+"'")
+        usb.write(json.dumps(data).encode())
     elif request.GET.home:
 
         data = {
