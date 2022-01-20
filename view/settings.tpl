@@ -50,8 +50,8 @@
             <input type="text" value="{{curpovrtavanje}}" id="povrtavanje" name="povrtavanje"/>
             <br>
 
-            <label for="povratekPovrtavanje">Povratek povrtavanje</label><br>
-            <input type="text" value="{{curpovratekpovrtavanje}}" id="povratekPovrtavanje" name="povratekPovrtavanje"/>
+            <label for="povratekpovrtavanje">Povratek povrtavanje</label><br>
+            <input type="text" value="{{curpovratekpovrtavanje}}" id="povratekpovrtavanje" name="povratekpovrtavanje"/>
             <br>
 
             <input class="btn btn-success" style="font-size: 50px;width:550px" type="submit" name="save" value="Shrani">
