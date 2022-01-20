@@ -219,9 +219,25 @@ def todo_list():
         c.execute("SELECT value FROM vars WHERE name LIKE 'povratekpovrtavanje'")
         curpovratekpovrtavanje = c.fetchone()[0]
 
+        ## pozicijaL
+        ## pozicijaD
+        ## orodjeL
+        ## orodjeD
+        ## hodL
+        ## počasnejePredKoncemHodaL
+        ## hitrostPredKoncemHodaD
+        ## hodD
+        ## počasnejePredKoncemHodaD
+        ## hitrostPredKoncemHodaD
+        ## povratekL
+        ## povratekD
+        ## povrtavanjeL
+        ## povrtavanjeD
+
+
         data = {
             "action": "drill",
-            "pozicija": curpozicija,
+            "pozicija": curpozicija*160,
             "hod": curhod,
             "povratek": curpovratek,
             "povrtavanje": curpovrtavanje,
@@ -233,6 +249,14 @@ def todo_list():
 
         data = {
             "action": "home",
+        }
+
+        usb.write(json.dumps(data).encode())
+
+    elif request.GET.zaga:
+
+        data = {
+            "action": "cut",
         }
 
         usb.write(json.dumps(data).encode())
