@@ -195,6 +195,11 @@ def todo_list():
         idx += 1
 
     c.close()
+
+    #if request.GET.drill:
+
+    #if request.GET.home:
+
     output = template('make_table_vrtalka', rows=dict, projectStats=projectStats)
     return output
 

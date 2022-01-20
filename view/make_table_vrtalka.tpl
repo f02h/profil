@@ -38,49 +38,10 @@
         </div>
         <div style="height:56px"></div>
 
-        %for project in rows:
-            <table border="1" class="table" style="font-size: 34px;margin-bottom:0px">
-            <tr>
-                <th colspan="5" style="background-color: #dedede54;">{{project}}
-                    % if not projectStats[project]:
-                        <a href="/updateVrtalkaProject/{{project}}" class="btn btn-warning" style="display:inline-block;margin:auto;width:100px;padding: 15px;float:right;">&olarr;</a>
-                        <a href="/deleteVrtalkaProject/{{project}}" class="btn btn-danger" style="display:inline-block;margin:auto;width:100px;padding: 15px;float:right;">&#x274C;</a>
-                     %end
-                     % if projectStats[project]:
-                        <a href="/confirmVrtalkaProject/{{project}}" class="btn btn-success" style="display:inline-block;margin:auto;width:100px;padding: 15px;float:right;">✓</a>
-                     %end
-                </th>
-            </tr>
-            %for row in rows[project]:
-              % if not rows[project][row][-2]:
-                <tr style="background: rgb(0 0 0 / 10%); color: #00000040;">
-                    <td>
-                        <a href="/updateVrtalka/{{rows[project][row][-1]}}" class="btn btn-warning" style="display:inline-block;margin:auto;width:100px;padding: 15px;">&olarr;</a>
-                        <a href="/deleteVrtalka/{{rows[project][row][-1]}}" class="btn btn-danger" style="display:inline-block;margin:auto;width:100px;padding: 15px;">&#x274C;</a>
-                    </td>
-              %end
-              % if rows[project][row][-2]:
-              <tr>
-                <td>
-                    <a href="/confirmVrtalka/{{rows[project][row][-1]}}" class="btn btn-success" style="display:inline-block;margin:auto;width:100px;padding: 15px;">✓</a>
-                </td>
-              %end
+        <form action="/vrtalka" method="get" style="max-width: 500px;margin: auto;background: white;padding: 10px;font-size: 50px;">
+            <input class="btn btn-success" style="font-size: 50px;width:550px" type="submit" name="home" value="Home">
+            <input class="btn btn-success" style="font-size: 50px;width:550px" type="submit" name="drill" value="Vrtaj">
+        </form>
 
-              <%
-                del rows[project][row][-2]
-                del rows[project][row][-1]
-              %>
-              %for col in rows[project][row]:
-                % if ((isinstance(col, str)) and ("#" in col)):
-                    <td style="color:red;">{{col}}</td>
-                % end
-                % if (((isinstance(col, str)) and ("#" not in col)) or type(col) != str):
-                    <td>{{col}}</td>
-                % end
-              %end
-              </tr>
-            %end
-            </table>
-        %end
     </body>
 </html>
