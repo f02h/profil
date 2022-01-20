@@ -227,14 +227,14 @@ def todo_list():
             "povratekpovrtavanje": curpovratekpovrtavanje
         }
 
-        usb.write(b"'"+json.dumps(data)+"'")
+        usb.write(b"'"+json.dumps(data).encode()+"'")
     elif request.GET.home:
 
         data = {
             "action": "home",
         }
 
-        usb.write(b"'"+json.dumps(data)+"'")
+        usb.write(b"'"+json.dumps(data).encode()+"'")
 
     output = template('make_table_vrtalka', rows=dict, projectStats=projectStats)
     return output
