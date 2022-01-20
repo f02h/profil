@@ -227,7 +227,7 @@ def todo_list():
         hod = request.GET.hod.strip()
         povratek = request.GET.povratek.strip()
         povrtavanje = request.GET.povrtavanje.strip()
-        povratekPovrtavanje = request.GET.povratekPovrtavanje.strip()
+        povratekpovrtavanje = request.GET.povratekPovrtavanje.strip()
 
         conn = sqlite3.connect('/home/pi/profil/todo.db')
         c = conn.cursor()
@@ -235,7 +235,7 @@ def todo_list():
         c.execute("UPDATE vars SET value = ? WHERE name LIKE 'hod'", (hod,))
         c.execute("UPDATE vars SET value = ? WHERE name LIKE 'povratek'", (povratek,))
         c.execute("UPDATE vars SET value = ? WHERE name LIKE 'povrtavanje'", (povrtavanje,))
-        c.execute("UPDATE vars SET value = ? WHERE name LIKE 'povratekPovrtavanje'", (povratekPovrtavanje,))
+        c.execute("UPDATE vars SET value = ? WHERE name LIKE 'povratekpovrtavanje'", (povratekpovrtavanje,))
         conn.commit()
 
         redirect('/settings')
@@ -254,7 +254,7 @@ def todo_list():
         c.execute("SELECT value FROM vars WHERE name LIKE 'povrtavanje'")
         curpovrtavanje = c.fetchone()[0]
 
-        c.execute("SELECT value FROM vars WHERE name LIKE 'povratekPovrtavanje'")
+        c.execute("SELECT value FROM vars WHERE name LIKE 'povratekpovrtavanje'")
         curpovratekpovrtavanje = c.fetchone()[0]
 
         return template('settings', pozicija=float(curpozicija), hod=float(curhod), povratek=float(curpovratek), povrtavanje=float(curpovrtavanje), povratekPovrtavanje=float(curpovratekpovrtavanje))
