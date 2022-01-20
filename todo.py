@@ -235,6 +235,7 @@ def todo_list():
         }
 
         usb.write(json.dumps(data).encode())
+        raise Exception("Sorry, no numbers below zero")
 
     c.close()
     output = template('make_table_vrtalka', rows=dict, projectStats=projectStats)
