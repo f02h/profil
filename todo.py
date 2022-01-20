@@ -8,8 +8,8 @@ from collections import defaultdict
 
 # only needed when you run Bottle on mod_wsgi
 from bottle import default_app
-#TEMPLATE_PATH.insert(0, './aluprofili/view')
-bottle.TEMPLATE_PATH.insert(0, '/home/pi/aluprofili/view')
+#TEMPLATE_PATH.insert(0, './profil/view')
+bottle.TEMPLATE_PATH.insert(0, '/home/pi/profil/view')
 
 dirname = os.path.dirname(sys.argv[0])
 
@@ -33,7 +33,7 @@ def nested_dict(n, type):
 @route('/todo')
 def todo_list():
 
-    conn = sqlite3.connect('/home/pi/aluprofili/todo.db')
+    conn = sqlite3.connect('/home/pi/profil/todo.db')
     c = conn.cursor()
     c.execute("SELECT name,qty,dimensions,status FROM todo WHERE status LIKE '1'")
     result = c.fetchall()
@@ -84,7 +84,7 @@ def todo_list():
 @route('/zaga')
 def todo_list():
 
-    conn = sqlite3.connect('/home/pi/aluprofili/todo.db')
+    conn = sqlite3.connect('/home/pi/profil/todo.db')
     c = conn.cursor()
 
     c.execute("SELECT COUNT(DISTINCT project) FROM zaga WHERE izbrisano IS NULL")
@@ -169,7 +169,7 @@ def todo_list():
 
 @route('/vrtalka')
 def todo_list():
-    conn = sqlite3.connect('/home/pi/aluprofili/todo.db')
+    conn = sqlite3.connect('/home/pi/profil/todo.db')
     c = conn.cursor()
 
     c.execute("SELECT COUNT(DISTINCT project) FROM vrtalka WHERE izbrisano IS NULL")
@@ -202,7 +202,7 @@ def todo_list():
 @route('/vrtalka2')
 def todo_list():
 
-    conn = sqlite3.connect('/home/pi/aluprofili/todo.db')
+    conn = sqlite3.connect('/home/pi/profil/todo.db')
     c = conn.cursor()
     c.execute("SELECT name,qty,dimensions,status,id FROM vrtalka WHERE izbrisano IS NULL ORDER BY status DESC, dimensions ASC")
     result = c.fetchall()
@@ -226,7 +226,7 @@ def todo_list():
         dolzinaRoke = request.GET.dolzinaRoke.strip()
         debelinaZage = request.GET.debelinaZage.strip()
 
-        conn = sqlite3.connect('/home/pi/aluprofili/todo.db')
+        conn = sqlite3.connect('/home/pi/profil/todo.db')
         c = conn.cursor()
         c.execute("UPDATE vars SET value = ? WHERE name LIKE 'dolzinaRoke'", (dolzinaRoke,))
         c.execute("UPDATE vars SET value = ? WHERE name LIKE 'debelinaZage'", (debelinaZage,))
@@ -234,7 +234,7 @@ def todo_list():
 
         redirect('/settings')
     else:
-        conn = sqlite3.connect('/home/pi/aluprofili/todo.db')
+        conn = sqlite3.connect('/home/pi/profil/todo.db')
         c = conn.cursor()
         c.execute("SELECT value FROM vars WHERE name LIKE 'dolzinaRoke'")
         curdolzinaRoke = c.fetchone()[0]
@@ -251,7 +251,7 @@ def new_item():
 
         new = request.GET.name.strip()
         dim = request.GET.dimensions.strip()
-        conn = sqlite3.connect('/home/pi/aluprofili/todo.db')
+        conn = sqlite3.connect('/home/pi/profil/todo.db')
         c = conn.cursor()
 
         c.execute("INSERT INTO todo (name,dimensions,status) VALUES (?,?,?)", (new,dim, 1))
@@ -278,7 +278,7 @@ def edit_item(no):
         else:
             status = 0
 
-        conn = sqlite3.connect('/home/pi/aluprofili/todo.db')
+        conn = sqlite3.connect('/home/pi/profil/todo.db')
         c = conn.cursor()
         c.execute("UPDATE todo SET task = ?, status = ? WHERE id LIKE ?", (edit, status, no))
         conn.commit()
@@ -295,7 +295,7 @@ def edit_item(no):
 @route('/confirmZaga/<no:int>', method='GET')
 def edit_item(no):
 
-    conn = sqlite3.connect('/home/pi/aluprofili/todo.db')
+    conn = sqlite3.connect('/home/pi/profil/todo.db')
     c = conn.cursor()
     c.execute("UPDATE zaga SET status = 0 WHERE id LIKE ?", (int(no),))
     conn.commit()
@@ -304,7 +304,7 @@ def edit_item(no):
 
 @route('/updateZaga/<no:int>', method='GET')
 def edit_item(no):
-    conn = sqlite3.connect('/home/pi/aluprofili/todo.db')
+    conn = sqlite3.connect('/home/pi/profil/todo.db')
     c = conn.cursor()
     c.execute("UPDATE zaga SET status = 1 WHERE id LIKE ?", (int(no),))
     conn.commit()
@@ -314,7 +314,7 @@ def edit_item(no):
 @route('/deleteZaga/<no:int>', method='GET')
 def edit_item(no):
 
-    conn = sqlite3.connect('/home/pi/aluprofili/todo.db')
+    conn = sqlite3.connect('/home/pi/profil/todo.db')
     c = conn.cursor()
     c.execute("UPDATE zaga SET izbrisano = strftime('%s', 'now') WHERE id LIKE ?", (int(no),))
     conn.commit()
@@ -323,7 +323,7 @@ def edit_item(no):
 
 @route('/confirmVrtalka/<no:int>', method='GET')
 def edit_item(no):
-    conn = sqlite3.connect('/home/pi/aluprofili/todo.db')
+    conn = sqlite3.connect('/home/pi/profil/todo.db')
     c = conn.cursor()
     c.execute("UPDATE vrtalka SET status = 0 WHERE id LIKE ?", (int(no),))
     conn.commit()
@@ -332,7 +332,7 @@ def edit_item(no):
 
 @route('/updateVrtalka/<no:int>', method='GET')
 def edit_item(no):
-    conn = sqlite3.connect('/home/pi/aluprofili/todo.db')
+    conn = sqlite3.connect('/home/pi/profil/todo.db')
     c = conn.cursor()
     c.execute("UPDATE vrtalka SET status = 1 WHERE id LIKE ?", (int(no),))
     conn.commit()
@@ -341,7 +341,7 @@ def edit_item(no):
 
 @route('/deleteVrtalka/<no:int>', method='GET')
 def edit_item(no):
-    conn = sqlite3.connect('/home/pi/aluprofili/todo.db')
+    conn = sqlite3.connect('/home/pi/profil/todo.db')
     c = conn.cursor()
     c.execute("UPDATE vrtalka SET izbrisano = strftime('%s', 'now') WHERE id LIKE ?", (int(no),))
     conn.commit()
@@ -350,7 +350,7 @@ def edit_item(no):
 
 @route('/confirmZagaProject/<no>', method='GET')
 def edit_item(no):
-    conn = sqlite3.connect('/home/pi/aluprofili/todo.db')
+    conn = sqlite3.connect('/home/pi/profil/todo.db')
     c = conn.cursor()
     c.execute("UPDATE zaga SET status = 0 WHERE project LIKE ?", (str(no),))
     conn.commit()
@@ -359,7 +359,7 @@ def edit_item(no):
 
 @route('/updateZagaProject/<no>', method='GET')
 def edit_item(no):
-    conn = sqlite3.connect('/home/pi/aluprofili/todo.db')
+    conn = sqlite3.connect('/home/pi/profil/todo.db')
     c = conn.cursor()
     c.execute("UPDATE zaga SET status = 1 WHERE project LIKE ?", (str(no),))
     conn.commit()
@@ -368,7 +368,7 @@ def edit_item(no):
 
 @route('/deleteZagaProject/<no>', method='GET')
 def edit_item(no):
-    conn = sqlite3.connect('/home/pi/aluprofili/todo.db')
+    conn = sqlite3.connect('/home/pi/profil/todo.db')
     c = conn.cursor()
     c.execute("UPDATE zaga SET izbrisano = strftime('%s', 'now') WHERE project LIKE ?", (str(no),))
     conn.commit()
@@ -377,7 +377,7 @@ def edit_item(no):
 
 @route('/confirmVrtalkaProject/<no>', method='GET')
 def edit_item(no):
-    conn = sqlite3.connect('/home/pi/aluprofili/todo.db')
+    conn = sqlite3.connect('/home/pi/profil/todo.db')
     c = conn.cursor()
     c.execute("UPDATE vrtalka SET status = 0 WHERE project LIKE ?", (str(no),))
     conn.commit()
@@ -386,7 +386,7 @@ def edit_item(no):
 
 @route('/updateVrtalkaProject/<no>', method='GET')
 def edit_item(no):
-    conn = sqlite3.connect('/home/pi/aluprofili/todo.db')
+    conn = sqlite3.connect('/home/pi/profil/todo.db')
     c = conn.cursor()
     c.execute("UPDATE vrtalka SET status = 1 WHERE project LIKE ?", (str(no),))
     conn.commit()
@@ -395,7 +395,7 @@ def edit_item(no):
 
 @route('/deleteVrtalkaProject/<no>', method='GET')
 def edit_item(no):
-    conn = sqlite3.connect('/home/pi/aluprofili/todo.db')
+    conn = sqlite3.connect('/home/pi/profil/todo.db')
     c = conn.cursor()
     c.execute("UPDATE vrtalka SET izbrisano = strftime('%s', 'now') WHERE project LIKE ?", (str(no),))
     conn.commit()
@@ -423,7 +423,7 @@ def do_upload():
         file_path = "{path}/{file}".format(path=save_path, file=upload.filename)
         upload.save(file_path,overwrite=True)
 
-        conn = sqlite3.connect('/home/pi/aluprofili/todo.db')
+        conn = sqlite3.connect('/home/pi/profil/todo.db')
         c = conn.cursor()
 
         with open(file_path, newline='', encoding='cp1252') as csv_file:
@@ -462,7 +462,7 @@ def do_upload():
 @route('/item<item:re:[0-9]+>')
 def show_item(item):
 
-        conn = sqlite3.connect('/home/pi/aluprofili/todo.db')
+        conn = sqlite3.connect('/home/pi/profil/todo.db')
         c = conn.cursor()
         c.execute("SELECT task FROM todo WHERE id LIKE ?", (item,))
         result = c.fetchall()
@@ -483,7 +483,7 @@ def help():
 @route('/json<json:re:[0-9]+>')
 def show_json(json):
 
-    conn = sqlite3.connect('/home/pi/aluprofili/todo.db')
+    conn = sqlite3.connect('/home/pi/profil/todo.db')
     c = conn.cursor()
     c.execute("SELECT task FROM todo WHERE id LIKE ?", (json,))
     result = c.fetchall()
