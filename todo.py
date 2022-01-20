@@ -15,11 +15,11 @@ dirname = os.path.dirname(sys.argv[0])
 
 @route('/static/<filename:re:.*\.css>')
 def send_css(filename):
-    return static_file(filename, root=dirname+'/static/asset/css')
+    return static_file(filename, root='./static/asset/css')
 
 @route('/static/<filename:re:.*\.js>')
 def send_js(filename):
-    return static_file(filename, root=dirname+'/static/asset/js')
+    return static_file(filename, root='./static/asset/js')
 
 def def_value():
     return "Not Present"
