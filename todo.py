@@ -15,7 +15,7 @@ from bottle import default_app
 bottle.TEMPLATE_PATH.insert(0, '/home/pi/profil/view')
 
 USB_PORT = "/dev/ttyACM0"
-usb = serial.Serial(USB_PORT, 115200, timeout=2)
+usb = serial.Serial(USB_PORT, 115200)
 
 dirname = os.path.dirname(sys.argv[0])
 
