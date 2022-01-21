@@ -7,6 +7,7 @@ import bottle
 from collections import defaultdict
 import serial
 import json
+from pprint import pprint
 
 # only needed when you run Bottle on mod_wsgi
 from bottle import default_app
@@ -256,7 +257,7 @@ def todo_list():
 
         usb.write(json.dumps(data).encode())
 
-        return hear()
+        pprint(hear())
 
         if hear() == 'done':
             return redirect("/settings")
