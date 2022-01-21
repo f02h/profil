@@ -257,7 +257,8 @@ def todo_list():
 
         usb.write(json.dumps(data).encode())
 
-        hearv = hear()
+        msg = usb.read_until()  # read until a new line
+        hearv = msg.decode('ascii')  # decode n return
 
     elif request.GET.zaga:
 
