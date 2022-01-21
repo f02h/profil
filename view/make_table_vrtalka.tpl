@@ -43,5 +43,7 @@
             <input class="btn btn-success" style="font-size: 50px;width:550px" type="submit" name="drill" value="Vrtaj">
         </form>
 
+         <input class="btn btn-success" style="font-size: 50px;width:550px"  name="test" value="{{outputv}}">
+
     </body>
 </html>

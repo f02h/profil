@@ -201,7 +201,7 @@ def todo_list():
         dict[row[3]][idx] = [row[0], int(row[1]), row[2], row[4], row[5]]
         idx += 1
 
-
+    hearv = ""
 
     if request.GET.drill:
 
@@ -257,12 +257,7 @@ def todo_list():
 
         usb.write(json.dumps(data).encode())
 
-        return pprint(hear())
-
-        if hear() == 'done':
-            return redirect("/settings")
-
-
+        hearv = hear()
 
     elif request.GET.zaga:
 
@@ -286,7 +281,7 @@ def todo_list():
 
 
     c.close()
-    output = template('make_table_vrtalka', rows=dict, projectStats=projectStats)
+    output = template('make_table_vrtalka', rows=dict, projectStats=projectStats, outputv=hearv)
     return output
 
 
