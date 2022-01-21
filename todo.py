@@ -256,6 +256,8 @@ def todo_list():
 
         usb.write(json.dumps(data).encode())
 
+        return hear()
+
         if hear() == 'done':
             return redirect("/settings")
 
