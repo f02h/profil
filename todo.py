@@ -256,7 +256,10 @@ def todo_list():
 
         usb.write(json.dumps(data).encode())
 
-        return redirect(request.path)
+        if hear() == 'done':
+            return redirect(request.path)
+
+
 
     elif request.GET.zaga:
 
@@ -593,6 +596,11 @@ def show_json(json):
         return {'task': 'This item number does not exist!'}
     else:
         return {'task': result[0]}
+
+def hear():
+    msg = usb.read_until() # read until a new line
+    mystring = msg.decode('ascii')  # decode n return
+    return mystring
 
 
 @error(403)
