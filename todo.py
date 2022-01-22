@@ -332,6 +332,7 @@ def todo_list():
         res = c.execute("SELECT name,value FROM vars").fetchall()
         dictionary = {}
         dbvars = (Convert(res, dictionary))
+        dbvars = dict(res)
 
         return template('settings', dbdata=dbvars)
 
