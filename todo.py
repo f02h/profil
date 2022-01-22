@@ -344,7 +344,11 @@ def todo_list():
         c.execute("SELECT value FROM vars WHERE name LIKE 'povratekpovrtavanje'")
         curpovratekpovrtavanje = c.fetchone()[0]
 
-        return template('settings', pozicija=float(curpozicija), hod=float(curhod), povratek=float(curpovratek), povrtavanje=float(curpovrtavanje), povratekpovrtavanje=float(curpovratekpovrtavanje))
+        res = c.execute("SELECT name,value FROM vars").fetchall()
+        dictionary = {}
+        dbvars = (Convert(res, dictionary))
+
+        return template('settings', dbdata=dbvars)
 
 @route('/new', method='GET')
 def new_item():

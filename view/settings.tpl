@@ -34,6 +34,15 @@
         <div style="height:56px"></div>
         <form action="/settings" method="get" style="max-width: 500px;margin: auto;background: white;padding: 10px;font-size: 50px;">
 
+            %for dbvar in dbdata:
+
+                <label for="{{dbvar}}">{{dbvar}}</label><br>
+                <input type="text" value="{{dbdata[dbvar]}}" id="{{dbvar}}" name="{{dbvar}}"/>
+                <br>
+
+            %end
+
+
             <label for="pozicija">Pozicija</label><br>
             <input type="text" value="{{pozicija}}" id="pozicija" name="pozicija"/>
             <br>
