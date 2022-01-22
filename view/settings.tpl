@@ -40,6 +40,13 @@
                 <input type="text" value="{{dbdata[dbvar]}}" id="{{dbvar}}" name="{{dbvar}}"/>
                 <br>
 
+                <script>
+                    window.addEventListener("load", function(){
+                    // BASIC
+                    numpad.attach({target: "{{dbvar}}"});
+                    });
+                </script>
+
             %end
 
             <input class="btn btn-success" style="font-size: 50px;width:550px" type="submit" name="save" value="Shrani">
