@@ -42,27 +42,6 @@
 
             %end
 
-
-            <label for="pozicija">Pozicija</label><br>
-            <input type="text" value="{{pozicija}}" id="pozicija" name="pozicija"/>
-            <br>
-
-            <label for="hod">Hod</label><br>
-            <input type="text" value="{{hod}}" id="hod" name="hod"/>
-            <br>
-
-            <label for="povratek">Povratek</label><br>
-            <input type="text" value="{{povratek}}" id="povratek" name="povratek"/>
-            <br>
-
-            <label for="povrtavanje">Povrtavanje</label><br>
-            <input type="text" value="{{povrtavanje}}" id="povrtavanje" name="povrtavanje"/>
-            <br>
-
-            <label for="povratekpovrtavanje">Povratek povrtavanje</label><br>
-            <input type="text" value="{{povratekpovrtavanje}}" id="povratekpovrtavanje" name="povratekpovrtavanje"/>
-            <br>
-
             <input class="btn btn-success" style="font-size: 50px;width:550px" type="submit" name="save" value="Shrani">
         </form>
     </body>
