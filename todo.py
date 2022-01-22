@@ -230,22 +230,22 @@ def todo_list():
 
         data = {
             "A": "drill",
-            "PLN":dbvars["pozicijaLNull"],
-            "PDN":dbvars["pozicijaDNull"],
-            "PL":dbvars["pozicijaL"],
-            "PD":dbvars["pozicijaD"],
+            "PLN":dbvars["pozicijaLNull"]*160,
+            "PDN":dbvars["pozicijaDNull"]*160,
+            "PL":dbvars["pozicijaL"]*160,
+            "PD":dbvars["pozicijaD"]*160,
             "OL":dbvars["orodjeL"],
             "OD":dbvars["orodjeD"],
-            "HL":dbvars["hodL"],
+            "HL":dbvars["hodL"]*160,
             "PHL":dbvars["pocasnejePredKoncemHodaL"],
             "PHLH":dbvars["hitrostPredKoncemHodaL"],
-            "HD":dbvars["hodD"],
+            "HD":dbvars["hodD"]*160,
             "PHD":dbvars["pocasnejePredKoncemHodaD"],
             "PHDH":dbvars["hitrostPredKoncemHodaD"],
-            "POL":dbvars["povratekL"],
-            "POD":dbvars["povratekD"],
-            "POVL":dbvars["povrtavanjeL"],
-            "POVD":dbvars["povrtavanjeD"],
+            "POL":dbvars["povratekL"]*160,
+            "POD":dbvars["povratekD"]*160,
+            "POVL":dbvars["povrtavanjeL"]*160,
+            "POVD":dbvars["povrtavanjeD"]*160,
         }
 
         usb.write(json.dumps(data).encode())
