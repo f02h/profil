@@ -592,7 +592,7 @@ def hear():
 
 def Convert(tup, di):
     for a, b in tup:
-        di.setdefault(a, []).append(b)
+        di.setdefault(a, "").append(b)
     return di
 
 @error(403)
