@@ -258,8 +258,7 @@ def todo_list():
         }
 
         usb.write(json.dumps(data).encode())
-        if hear() == "done":
-            hearv = "končano"
+        hearv = hear()
 
     elif request.GET.zaga:
 
