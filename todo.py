@@ -208,18 +208,7 @@ def todo_list():
 
         c.execute("SELECT value FROM vars")
         dbvars = [dict(row) for row in c.fetchall()]
-"""
-        c.execute("SELECT value FROM vars WHERE name LIKE 'hod'")
-        curhod = c.fetchone()[0]
-        c.execute("SELECT value FROM vars WHERE name LIKE 'povratek'")
-        curpovratek = c.fetchone()[0]
 
-        c.execute("SELECT value FROM vars WHERE name LIKE 'povrtavanje'")
-        curpovrtavanje = c.fetchone()[0]
-
-        c.execute("SELECT value FROM vars WHERE name LIKE 'povratekpovrtavanje'")
-        curpovratekpovrtavanje = c.fetchone()[0]
-"""
         ## pozicijaLNull
         ## pozicijaDNull
         ## pozicijaL
