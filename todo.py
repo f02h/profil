@@ -237,10 +237,10 @@ def todo_list():
             "OL":dbvars["orodjeL"],
             "OD":dbvars["orodjeD"],
             "HL":dbvars["hodL"],
-            "PHL":dbvars["počasnejePredKoncemHodaL"],
+            "PHL":dbvars["pocasnejePredKoncemHodaL"],
             "PHLH":dbvars["hitrostPredKoncemHodaL"],
             "HD":dbvars["hodD"],
-            "PHD":dbvars["počasnejePredKoncemHodaD"],
+            "PHD":dbvars["pocasnejePredKoncemHodaD"],
             "PHDH":dbvars["hitrostPredKoncemHodaD"],
             "POL":dbvars["povratekL"],
             "POD":dbvars["povratekD"],
@@ -248,9 +248,8 @@ def todo_list():
             "POVD":dbvars["povrtavanjeD"],
         }
 
-        hearv = json.dumps(data)
-
-        ##usb.write(json.dumps(data).encode())
+        usb.write(json.dumps(data).encode())
+        hearv = hear()
         ##return redirect(request.path)
     elif request.GET.home:
 
