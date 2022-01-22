@@ -202,15 +202,15 @@ def todo_list():
         idx += 1
 
     hearv = ""
+    dbvars = ""
 
     if request.GET.drill:
 
-        c.execute("SELECT value FROM vars WHERE name LIKE 'pozicija'")
-        curpozicija = c.fetchone()[0]
-
+        c.execute("SELECT value FROM vars")
+        dbvars = [dict(row) for row in c.fetchall()]
+"""
         c.execute("SELECT value FROM vars WHERE name LIKE 'hod'")
         curhod = c.fetchone()[0]
-
         c.execute("SELECT value FROM vars WHERE name LIKE 'povratek'")
         curpovratek = c.fetchone()[0]
 
@@ -219,7 +219,7 @@ def todo_list():
 
         c.execute("SELECT value FROM vars WHERE name LIKE 'povratekpovrtavanje'")
         curpovratekpovrtavanje = c.fetchone()[0]
-
+"""
         ## pozicijaLNull
         ## pozicijaDNull
         ## pozicijaL
@@ -239,16 +239,29 @@ def todo_list():
 
 
         data = {
-            "action": "drill",
-            "pozicija": curpozicija*160,
-            "hod": curhod,
-            "povratek": curpovratek,
-            "povrtavanje": curpovrtavanje,
-            "povratekpovrtavanje": curpovratekpovrtavanje
+            "A": "drill",
+            "PLN":dbvars["pozicijaLNull"],
+            "PDN":dbvars["pozicijaDNull"],
+            "PL":dbvars["pozicijaL"],
+            "PD":dbvars["pozicijaD"],
+            "OL":dbvars["orodjeL"],
+            "OD":dbvars["orodjeD"],
+            "HL":dbvars["hodL"],
+            "PHL":dbvars["počasnejePredKoncemHodaL"],
+            "PHLH":dbvars["hitrostPredKoncemHodaL"],
+            "HD":dbvars["hodD"],
+            "PHD":dbvars["počasnejePredKoncemHodaD"],
+            "PHDH":dbvars["hitrostPredKoncemHodaD"],
+            "POL":dbvars["povratekL"],
+            "POD":dbvars["povratekD"],
+            "POVL":dbvars["povrtavanjeL"],
+            "POVD":dbvars["povrtavanjeD"],
         }
 
-        usb.write(json.dumps(data).encode())
-        return redirect(request.path)
+        hearv = json.dumps(data)
+
+        ##usb.write(json.dumps(data).encode())
+        ##return redirect(request.path)
     elif request.GET.home:
 
         data = {
@@ -256,7 +269,8 @@ def todo_list():
         }
 
         usb.write(json.dumps(data).encode())
-        hearv = hear()
+        if hear() == "done":
+            hearv = "končano"
 
     elif request.GET.zaga:
 
