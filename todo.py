@@ -329,21 +329,6 @@ def todo_list():
     else:
         conn = sqlite3.connect('/home/pi/profil/todo.db')
         c = conn.cursor()
-        c.execute("SELECT value FROM vars WHERE name LIKE 'pozicija'")
-        curpozicija = c.fetchone()[0]
-
-        c.execute("SELECT value FROM vars WHERE name LIKE 'hod'")
-        curhod = c.fetchone()[0]
-
-        c.execute("SELECT value FROM vars WHERE name LIKE 'povratek'")
-        curpovratek = c.fetchone()[0]
-
-        c.execute("SELECT value FROM vars WHERE name LIKE 'povrtavanje'")
-        curpovrtavanje = c.fetchone()[0]
-
-        c.execute("SELECT value FROM vars WHERE name LIKE 'povratekpovrtavanje'")
-        curpovratekpovrtavanje = c.fetchone()[0]
-
         res = c.execute("SELECT name,value FROM vars").fetchall()
         dictionary = {}
         dbvars = (Convert(res, dictionary))
