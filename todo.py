@@ -188,7 +188,7 @@ def todo_list():
 
     w, h = 5, len(result);
     output = [[[0 for x in range(w)] for y in range(h)] for z in range(nbrProjects)]
-    dict = nested_dict(2, list)
+    dict2 = nested_dict(2, list)
     projectStats = defaultdict(def_value)
     idx = 0
     for row in result:
@@ -198,7 +198,7 @@ def todo_list():
         if row[4]:
             projectStats[row[3]] = 1
 
-        dict[row[3]][idx] = [row[0], int(row[1]), row[2], row[4], row[5]]
+        dict2[row[3]][idx] = [row[0], int(row[1]), row[2], row[4], row[5]]
         idx += 1
 
     hearv = ""
@@ -208,7 +208,8 @@ def todo_list():
 
         res = c.execute("SELECT name,value FROM vars").fetchall()
         dictionary = {}
-        dbvars = (Convert(res, dictionary))
+        #dbvars = (Convert(res, dictionary))
+        dbvars = dict(res)
 
         ## pozicijaLNull
         ## pozicijaDNull
@@ -282,7 +283,7 @@ def todo_list():
 
 
     c.close()
-    output = template('make_table_vrtalka', rows=dict, projectStats=projectStats, outputv=hearv)
+    output = template('make_table_vrtalka', rows=dict2, projectStats=projectStats, outputv=hearv)
     return output
 
 
@@ -331,7 +332,6 @@ def todo_list():
         c = conn.cursor()
         res = c.execute("SELECT name,value FROM vars").fetchall()
         dictionary = {}
-        dbvars = (Convert(res, dictionary))
         dbvars = dict(res)
 
         return template('settings', dbdata=dbvars)
