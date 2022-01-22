@@ -227,8 +227,6 @@ def todo_list():
         ## povrtavanjeL
         ## povrtavanjeD
 
-        hearv = dbvars
-        """
         data = {
             "A": "drill",
             "PLN":dbvars["pozicijaLNull"],
@@ -250,7 +248,7 @@ def todo_list():
         }
 
         hearv = json.dumps(data)
-        """
+
         ##usb.write(json.dumps(data).encode())
         ##return redirect(request.path)
     elif request.GET.home:
