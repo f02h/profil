@@ -206,8 +206,9 @@ def todo_list():
 
     if request.GET.drill:
 
-        res = c.execute("SELECT value FROM vars").fetchall()
-        dbvars = [dict(row) for row in c.fetchall()]
+        res = c.execute("SELECT name,value FROM vars").fetchall()
+        dictionary = {}
+        dbvars = (Convert(res, dictionary))
 
         ## pozicijaLNull
         ## pozicijaDNull
@@ -602,6 +603,10 @@ def hear():
     mystring = msg.decode('ascii')  # decode n return
     return mystring
 
+def Convert(tup, di):
+    for a, b in tup:
+        di.setdefault(a, []).append(b)
+    return di
 
 @error(403)
 def mistake403(code):
