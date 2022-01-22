@@ -206,8 +206,8 @@ def todo_list():
 
     if request.GET.drill:
 
-        c.execute("SELECT value FROM vars")
-        dbvars = [dict(row) for row in c.fetchall()]
+        res = c.execute("SELECT value FROM vars").fetchall()
+        dbvars = dict(zip([c[0] for c in c.description], res[0]))
 
         ## pozicijaLNull
         ## pozicijaDNull
