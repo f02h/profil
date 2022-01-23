@@ -370,7 +370,10 @@ def todo_list():
         dictionary = {}
         dbvars = dict(res)
 
-        return template('settings', dbdata=dbvars)
+        res = c.execute("SELECT id,name FROM profili").fetchall()
+        profili = dict(res)
+
+        return template('settings', dbdata=dbvars, profili=profili)
 
 @route('/new', method='GET')
 def new_item():

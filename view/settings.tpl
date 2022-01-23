@@ -34,6 +34,12 @@
         <div style="height:56px"></div>
         <form action="/settings" method="get" style="max-width: 500px;margin: auto;background: white;padding: 10px;font-size: 50px;">
 
+            <select id="alu_profiles" name="alu_profiles">
+                %for item in profili:
+                    <option value={{item.id}}>{{item.name}}</option>
+                %end
+            </select>
+
             %for dbvar in dbdata:
 
                 <label for="{{dbvar}}">{{dbvar}}</label><br>
