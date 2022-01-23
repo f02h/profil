@@ -36,7 +36,7 @@
 
             <select id="alu_profiles" name="alu_profiles">
                 %for item in profili:
-                    <option value={{item}}>{{item}}</option>
+                    <option value={{item}}>{{profili[item]}}</option>
                 %end
             </select>
 
