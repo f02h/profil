@@ -364,10 +364,14 @@ def todo_list():
 
         redirect('/settings')
     else:
+
+        idProfil = request.GET.alu_profiles.strip()
+        if not idProfil:
+            idProfil = 1
+
         conn = sqlite3.connect('/home/pi/profil/todo.db')
         c = conn.cursor()
-        res = c.execute("SELECT name,value FROM vars").fetchall()
-        dictionary = {}
+        res = c.execute("SELECT name,value FROM vars WHERE id LIKE ?", (str(idProfil))).fetchall()
         dbvars = dict(res)
 
         res = c.execute("SELECT id,name FROM profili").fetchall()
