@@ -14,7 +14,7 @@ from bottle import default_app
 #TEMPLATE_PATH.insert(0, './profil/view')
 bottle.TEMPLATE_PATH.insert(0, '/home/pi/profil/view')
 
-USB_PORT = "/dev/ttyACM1"
+USB_PORT = "/dev/ttyACM0"
 usb = serial.Serial(USB_PORT, 115200)
 
 dirname = os.path.dirname(sys.argv[0])
@@ -371,7 +371,7 @@ def todo_list():
 
         conn = sqlite3.connect('/home/pi/profil/todo.db')
         c = conn.cursor()
-        res = c.execute("SELECT name,value FROM vars WHERE id LIKE ?", (str(idProfil))).fetchall()
+        res = c.execute("SELECT name,value FROM vars WHERE idProfil LIKE ?", (str(idProfil))).fetchall()
         dbvars = dict(res)
 
         res = c.execute("SELECT id,name FROM profili").fetchall()
